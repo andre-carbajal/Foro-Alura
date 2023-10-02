@@ -1,12 +1,16 @@
-package com.alura.modelo;
+package com.alura.domain.curso;
 
-public class Usuario {
+public class Curso {
 
 	private Long id;
 	private String nombre;
-	private String email;
-	private String contrasena;
+	private String categoria;
 
+	public Curso(String nombre, String categoria) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,7 +27,7 @@ public class Usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Curso other = (Curso) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -48,20 +52,12 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getContrasena() {
-		return contrasena;
-	}
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 }
