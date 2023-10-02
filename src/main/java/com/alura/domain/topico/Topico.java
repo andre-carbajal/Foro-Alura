@@ -1,13 +1,15 @@
 package com.alura.domain.topico;
 
-import com.alura.domain.usuario.Usuario;
 import com.alura.domain.curso.Curso;
 import com.alura.domain.respuesta.Respuesta;
+import com.alura.domain.usuario.Usuario;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Topico {
 
 	private Long id;
@@ -48,70 +50,6 @@ public class Topico {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getMensaje() {
-		return mensaje;
-	}
-
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
-
-	public LocalDateTime getfechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setfechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public StatusTopico getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusTopico status) {
-		this.status = status;
-	}
-
-	public Usuario getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Usuario autor) {
-		this.autor = autor;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-
-	public List<Respuesta> getRespuestas() {
-		return respuestas;
-	}
-
-	public void setRespuestas(List<Respuesta> respuestas) {
-		this.respuestas = respuestas;
 	}
 
 }

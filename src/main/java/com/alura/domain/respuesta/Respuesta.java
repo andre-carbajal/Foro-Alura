@@ -2,9 +2,11 @@ package com.alura.domain.respuesta;
 
 import com.alura.domain.topico.Topico;
 import com.alura.domain.usuario.Usuario;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class Respuesta {
 
 	private Long id;
@@ -38,53 +40,4 @@ public class Respuesta {
 			return false;
 		return true;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getMensaje() {
-		return mensaje;
-	}
-
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
-
-	public Topico getTopico() {
-		return topico;
-	}
-
-	public void setTopico(Topico topico) {
-		this.topico = topico;
-	}
-
-	public LocalDateTime getfechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setfechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public Usuario getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Usuario autor) {
-		this.autor = autor;
-	}
-
-	public Boolean getSolucion() {
-		return solucion;
-	}
-
-	public void setSolucion(Boolean solucion) {
-		this.solucion = solucion;
-	}
-
 }
