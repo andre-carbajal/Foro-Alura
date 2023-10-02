@@ -3,22 +3,46 @@ package com.alura.domain.topico;
 import com.alura.domain.curso.Curso;
 import com.alura.domain.respuesta.Respuesta;
 import com.alura.domain.usuario.Usuario;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(name = "topicos")
+@Entity(name = "Topico")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Topico {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String titulo;
+
 	private String mensaje;
+
+	@Column(name = "fecha_creacion")
 	private LocalDateTime fechaCreacion = LocalDateTime.now();
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status_topico")
 	private StatusTopico status = StatusTopico.NO_RESPONDIDO;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "autor_id")
 	private Usuario autor;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "curso_id")
 	private Curso curso;
+
+	@OneToMany
 	private List<Respuesta> respuestas = new ArrayList<>();
 
 	public Topico(String titulo, String mensaje, Curso curso) {
