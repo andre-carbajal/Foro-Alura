@@ -28,7 +28,7 @@ public class Topico {
 	private String mensaje;
 
 	@Column(name = "fecha_creacion")
-	private LocalDateTime fechaCreacion = LocalDateTime.now();
+	private LocalDateTime fechaCreacion;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_topico")
@@ -45,9 +45,12 @@ public class Topico {
 	@OneToMany
 	private List<Respuesta> respuestas = new ArrayList<>();
 
-	public Topico(String titulo, String mensaje, Curso curso) {
+	public Topico(String titulo, String mensaje, Usuario autor, Curso curso) {
 		this.titulo = titulo;
 		this.mensaje = mensaje;
+		this.fechaCreacion = LocalDateTime.now();
+		this.status = StatusTopico.NO_RESPONDIDO;
+		this.autor = autor;
 		this.curso = curso;
 	}
 
