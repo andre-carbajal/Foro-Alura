@@ -1,5 +1,6 @@
 package com.alura.controller;
 
+import com.alura.domain.topico.DatosListarTopico;
 import com.alura.domain.topico.DatosRegistrarTopico;
 import com.alura.domain.topico.DatosRespuestaTopico;
 import com.alura.domain.topico.Topico;
@@ -10,6 +11,9 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +46,10 @@ public class TopicoController {
         DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getFechaCreacion(), topico.getStatus(), topico.getAutor().getId(), topico.getCurso().getId());
 
         return ResponseEntity.ok().body(datosRespuestaTopico);
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<DatosListarTopico>> listadoMedicos(@PageableDefault(size = 5) Pageable paginacion) {
+        return ResponseEntity.ok(topicoRepository.findAll(paginacion).map(DatosListarTopico::new));
     }
 }
