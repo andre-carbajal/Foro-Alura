@@ -1,9 +1,6 @@
 package com.alura.controller;
 
-import com.alura.domain.topico.DatosListarTopico;
-import com.alura.domain.topico.DatosRegistrarTopico;
-import com.alura.domain.topico.DatosRespuestaTopico;
-import com.alura.domain.topico.Topico;
+import com.alura.domain.topico.*;
 import com.alura.repository.CursoRepository;
 import com.alura.repository.TopicoRepository;
 import com.alura.repository.UsuarioRepository;
@@ -49,7 +46,7 @@ public class TopicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DatosListarTopico>> listadoTopicos(@PageableDefault(size = 5) Pageable paginacion) {
+    public ResponseEntity<Page<DatosListarTopico>> listadoTopico(@PageableDefault(size = 5) Pageable paginacion) {
         return ResponseEntity.ok(topicoRepository.findAll(paginacion).map(DatosListarTopico::new));
     }
 
@@ -60,5 +57,15 @@ public class TopicoController {
                 topico.getMensaje(), topico.getFechaCreacion(), topico.getStatus(),
                 topico.getAutor().getId(), topico.getCurso().getId());
         return ResponseEntity.ok(datosTopico);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datos, @PathVariable Long id){
+        Topico topico = topicoRepository.getReferenceById(id);
+        topico.actualizarTopico(datos);
+        return ResponseEntity.ok(new DatosRespuestaTopico(topico.getId(), topico.getTitulo(),
+                topico.getMensaje(), topico.getFechaCreacion(), topico.getStatus(),
+                topico.getAutor().getId(), topico.getCurso().getId()));
     }
 }

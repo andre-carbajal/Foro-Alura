@@ -54,6 +54,15 @@ public class Topico {
 		this.curso = curso;
 	}
 
+	public void actualizarTopico(DatosActualizarTopico datos) {
+		if (datos.titulo() != null) {
+			this.titulo = datos.titulo();
+		}
+		if (datos.mensaje() != null) {
+			this.mensaje = datos.mensaje();
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,5 +87,4 @@ public class Topico {
 			return false;
 		return true;
 	}
-
 }
