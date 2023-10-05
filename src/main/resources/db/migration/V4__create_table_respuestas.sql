@@ -6,7 +6,6 @@ create table respuestas(
    fecha_creacion datetime not null,
    autor_id bigint not null,
    solucion tinyint default 0 not null,
-   motivo_cancelamiento varchar(100) ,
 
    primary key(id),
 
