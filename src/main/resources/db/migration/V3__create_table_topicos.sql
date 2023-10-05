@@ -7,7 +7,6 @@ create table topicos(
     status_topico varchar(100) not null,
     autor_id bigint not null,
     curso_id bigint not null,
-    motivo_cancelamiento varchar(100) ,
 
     primary key(id),
 

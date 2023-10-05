@@ -42,6 +42,8 @@ public class Topico {
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
 
+	private boolean activo;
+
 	@OneToMany
 	private List<Respuesta> respuestas = new ArrayList<>();
 
@@ -52,6 +54,7 @@ public class Topico {
 		this.status = StatusTopico.NO_RESPONDIDO;
 		this.autor = autor;
 		this.curso = curso;
+		activo = true;
 	}
 
 	public void actualizarTopico(DatosActualizarTopico datos) {
@@ -61,6 +64,10 @@ public class Topico {
 		if (datos.mensaje() != null) {
 			this.mensaje = datos.mensaje();
 		}
+	}
+
+	public void desactivarTopico() {
+		this.activo = false;
 	}
 
 	@Override
