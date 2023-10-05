@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
     Page<Topico> findByActivoTrue(Pageable paginacion);
-    boolean existsByTituloAndMensaje(String titulo, String mensaje);
+    boolean existsByTitulo(String titulo);
 }
