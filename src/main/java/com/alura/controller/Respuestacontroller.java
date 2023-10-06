@@ -1,7 +1,6 @@
 package com.alura.controller;
 
 import com.alura.domain.respuesta.*;
-import com.alura.domain.topico.DatosRespuestaTopico;
 import com.alura.repository.RespuestaRepository;
 import com.alura.repository.TopicoRepository;
 import com.alura.repository.UsuarioRepository;
