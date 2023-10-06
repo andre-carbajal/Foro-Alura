@@ -42,6 +42,7 @@ public class Respuesta {
 		fechaCreacion = LocalDateTime.now();
 		this.autor = autor;
 		this.solucion = solucion;
+		this.activo = true;
 	}
 
 	@Override
