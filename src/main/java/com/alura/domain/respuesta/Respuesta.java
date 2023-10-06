@@ -34,6 +34,7 @@ public class Respuesta {
 	private Usuario autor;
 
 	private Boolean solucion = false;
+	private Boolean activo = true;
 
 	public Respuesta(String mensaje, Topico topico, Usuario autor, Boolean solucion) {
 		this.mensaje = mensaje;

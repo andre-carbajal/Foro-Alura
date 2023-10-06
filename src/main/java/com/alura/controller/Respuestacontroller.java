@@ -1,5 +1,6 @@
 package com.alura.controller;
 
+import com.alura.domain.respuesta.DatosListarRespuesta;
 import com.alura.domain.respuesta.DatosRegistrarRespuesta;
 import com.alura.domain.respuesta.DatosRespuesta;
 import com.alura.domain.respuesta.Respuesta;
@@ -9,6 +10,9 @@ import com.alura.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +36,10 @@ public class Respuestacontroller {
 
         respuestaRepository.save(new Respuesta(datos.mensaje(), topico, autor, datos.solucion()));
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<DatosListarRespuesta>> listarRespuesta(@PageableDefault(size = 5)Pageable pageable){
+        return ResponseEntity.ok(respuestaRepository.findByActivoTrue(pageable).map(DatosListarRespuesta::new));
     }
 }
