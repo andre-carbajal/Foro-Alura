@@ -58,4 +58,12 @@ public class Respuestacontroller {
                 respuesta.getAutor().getId(), respuesta.getSolucion()));
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity eliminarRespuesta(@PathVariable Long id){
+        var respuesta = respuestaRepository.getReferenceById(id);
+        respuesta.desactivarRespuesta();
+        return ResponseEntity.noContent().build();
+    }
+
 }

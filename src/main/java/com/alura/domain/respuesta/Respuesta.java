@@ -76,4 +76,8 @@ public class Respuesta {
 		}
 		this.solucion = datos.solucion();
 	}
+
+	public void desactivarRespuesta() {
+		this.activo = false;
+	}
 }
