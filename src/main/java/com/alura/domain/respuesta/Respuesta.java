@@ -69,4 +69,11 @@ public class Respuesta {
 			return false;
 		return true;
 	}
+
+	public void actualizarRespuesta(DatosActualizarRespuesta datos) {
+		if (datos.mensaje() != null) {
+			this.mensaje = datos.mensaje();
+		}
+		this.solucion = datos.solucion();
+	}
 }

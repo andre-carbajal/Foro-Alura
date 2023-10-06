@@ -1,9 +1,7 @@
 package com.alura.controller;
 
-import com.alura.domain.respuesta.DatosListarRespuesta;
-import com.alura.domain.respuesta.DatosRegistrarRespuesta;
-import com.alura.domain.respuesta.DatosRespuesta;
-import com.alura.domain.respuesta.Respuesta;
+import com.alura.domain.respuesta.*;
+import com.alura.domain.topico.DatosRespuestaTopico;
 import com.alura.repository.RespuestaRepository;
 import com.alura.repository.TopicoRepository;
 import com.alura.repository.UsuarioRepository;
@@ -50,4 +48,15 @@ public class Respuestacontroller {
                 respuesta.getTopico().getId(), respuesta.getFechaCreacion(),
                 respuesta.getAutor().getId(), respuesta.getSolucion()));
     }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity actualizarRespuesta(@RequestBody @Valid DatosActualizarRespuesta datos, @PathVariable Long id){
+        Respuesta respuesta = respuestaRepository.getReferenceById(id);
+        respuesta.actualizarRespuesta(datos);
+        return ResponseEntity.ok(new DatosRespuesta(respuesta.getId(), respuesta.getMensaje(),
+                respuesta.getTopico().getId(), respuesta.getFechaCreacion(),
+                respuesta.getAutor().getId(), respuesta.getSolucion()));
+    }
+
 }
