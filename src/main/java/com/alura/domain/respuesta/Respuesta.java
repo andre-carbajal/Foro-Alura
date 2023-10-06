@@ -27,13 +27,21 @@ public class Respuesta {
 	private Topico topico;
 
 	@Column(name = "fecha_creacion")
-	private LocalDateTime fechaCreacion = LocalDateTime.now();
+	private LocalDateTime fechaCreacion;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "autor_id")
 	private Usuario autor;
 
 	private Boolean solucion = false;
+
+	public Respuesta(String mensaje, Topico topico, Usuario autor, Boolean solucion) {
+		this.mensaje = mensaje;
+		this.topico = topico;
+		fechaCreacion = LocalDateTime.now();
+		this.autor = autor;
+		this.solucion = solucion;
+	}
 
 	@Override
 	public int hashCode() {
