@@ -42,4 +42,12 @@ public class Respuestacontroller {
     public ResponseEntity<Page<DatosListarRespuesta>> listarRespuesta(@PageableDefault(size = 5)Pageable pageable){
         return ResponseEntity.ok(respuestaRepository.findByActivoTrue(pageable).map(DatosListarRespuesta::new));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DatosRespuesta> retornarDatosRespuesta(@PathVariable Long id){
+        var respuesta = respuestaRepository.findById(id).get();
+        return ResponseEntity.ok(new DatosRespuesta(respuesta.getId(), respuesta.getMensaje(),
+                respuesta.getTopico().getId(), respuesta.getFechaCreacion(),
+                respuesta.getAutor().getId(), respuesta.getSolucion()));
+    }
 }
